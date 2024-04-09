@@ -1,0 +1,73 @@
+package com.example.imad5112assignment1
+
+import android.annotation.SuppressLint
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId", "SetTextI18n")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+//declaration the views
+        val ageNumber = findViewById<EditText>(R.id.ageNumber)
+        val btnGenerate = findViewById<Button>(R.id.btnGenerate)
+        val btnCancel = findViewById<Button>(R.id.btnCancel)
+        val txtResult = findViewById<TextView>(R.id.txtResults)
+        btnGenerate.setOnClickListener {
+            val age = ageNumber.text.toString().toIntOrNull()
+            if (age != null) {
+                val result = when (age) {
+                    in 0..12 -> "Child"
+                    in 13..19 -> "Teenager"
+                    in 20..29 -> "Young Adult"
+                    in 30..39 -> "Thirties"
+                    in 40..49 -> "Forties"
+                    in 50..59 -> "Fifties"
+                    in 60..69 -> "Sixties"
+                    in 70..79 -> "Seventies"
+                    in 80..89 -> "Eighties"
+                    else -> "You are old"
+                }
+                "Age: $age\n${
+                    when (result) {
+                        "Child" -> "Nkosi Johnson Nkosi Johnson, a child activist, was born on February 4, 1989, and passed away on June 1, 2001, at the age of 12. Johnson was born with HIV. He was the nation's longest-surviving child born with HIV at the time of his death.He was awarded the first International Children's Peace Prize from the Kids Foundation posthumously in recognition of his work for the rights of children living with HIV/AIDS."
+
+                        "Teenager" -> "Anne Frank German-born Jewish girl Anne Frank was born on June 12, 1929, and passed away at the age of 16 in 1945. She kept a journal in which she detailed her experiences living in hiding through the Nazi era. Many people's first exposure to the history of Nazi Germany's goal to exterminate every Jew in Europe during World War 2 comes from her diaries."
+
+                        "Young Adult" -> "Aaliyah Aaliyah Dana Haughton, who was born in Brooklyn, United States, on January 16, 1979, signed her first record deal at the age of 12, wanting to become an international phenomenon. She was referred to as R&B's princess. She tragically died in a plane crash at the age of 22."
+
+                        "Thirties" -> "Bob Marley Bob Marley, a singer-songwriter who was born in Saint Ann, Jamaica on February 6, 1945, is credited with growing reggae music and is now regarded as one of the genre's most popular artists. In 1981, he sadly passed away from skin cancer at the age of 36."
+
+                        "Forties" -> "Elvis Presely Born in Mississippi on January 8, 1935, Elvis reached fame as The King and one of the biggest names in rock 'n' roll. He passed away in August 1977 at the age of 42 from heart failure associated with his drug addiction. "
+                        
+                        "Fifties" -> "William Shakespear Shakespeare was a well-known English poet, playwright, and actor who was born in Stratford, England, on April 26, 1564. His most well-known work is Romeo and Juliet. It was believed that he passed away around 1616 at the age of 53." 
+
+                        "Sixties" -> "Lillian Ngoyi Lillian Ngoyi, who was born on September 25, 1911, in Pretoria, South Africa, held the position of president of the African National Congress (ANC) women's league. The mother of the black resistance was how others referred to her." 
+                            
+                        "Seventies" -> "Hugh Masekela  Hugh Masekela, an anti-apartheid jazz world fusion trumpeter, was born in Witbank, South Africa. The father of South African jazz was a reputation he had."
+
+                        "Eighties" -> "Maya Angelou Maya Angelou, who was born in Missouri on April 4, 1928, was a gifted writer and performer. Her well-known poems, Phenomenal Women and Still I Rise,"
+                        
+                        else -> "Sir Thomas Sean Connery Sean Connery, who was born in Edinburgh, Scotland, featured in several British films. James Bond is his most well-known character.The Queen knighted him in 2000."
+                        
+                    }
+
+                }"
+
+                .also { txtResult.text = it }
+
+            } else {
+                txtResult.text = "Please enter a valid age"
+            }
+        }
+        btnCancel.setOnClickListener {
+            ageNumber.text.clear()
+            txtResult.text = ""
+        }
+    }
+}
